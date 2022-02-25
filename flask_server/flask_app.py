@@ -1,16 +1,22 @@
-from flask import Flask
+import sys
+sys.path.append('/app')
 
-flask_app = Flask(__name__)
+from flask import Flask
+from flask import render_template
+import scraping_scripts.web_sraping_script as web_scraper
+import resources.constants as constants
+
+flask_app = Flask(__name__, template_folder='../web')
 
 @flask_app.route('/')
 def home():
-    return 'Hello world'
+    return render_template('index.html')
 
-@flask_app.route('/firstFilter')
+@flask_app.route('/first_filter')
 def firstFilter():
-    return 'Hello world 2'
+    return web_scraper.scrape_site(constants.URL)
 
-@flask_app.route('/secondFilter')
+@flask_app.route('/second_filter')
 def secondFilter():
     return 'Hello world 3'
 

@@ -1,4 +1,4 @@
 flask
 selenium
 pandas
-beautifulsoup4
+numpy
