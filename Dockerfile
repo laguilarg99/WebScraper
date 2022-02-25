@@ -1,5 +1,7 @@
 FROM python:3.7
 
+ENV FLASK_APP=flask_server/flask_app.py
+
 #install system dependencies
 RUN apt-get update \
     && apt-get -y install gcc make \
@@ -16,11 +18,15 @@ RUN apt-get install -yqq unzip
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
-#Upgrading pip
-RUN pip install --no-cache-dir --upgrade pip
+# Copy all the necessary files
+COPY . /app
 
-#Running the application
+# Upgrading pip and installing requirements
+RUN pip install --no-cache-dir --upgrade pip
 WORKDIR /app
-COPY docker_resources/requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
-COPY app /app/web_scraper
+RUN pip3 install --no-cache-dir -r resources/requirements.txt
+
+# Running the application
+CMD ["flask", "run", "--host", "0.0.0.0"]
+
+EXPOSE 5000
