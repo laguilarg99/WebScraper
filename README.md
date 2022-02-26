@@ -7,6 +7,7 @@ Using this project, you’ll be able to extract the first 30 entries from https:
 And select one of the following operations over that data:
 
 -> Filter all previous entries with more than five words in the title ordered by the number of comments first.
+
 -> Filter all previous entries with less than or equal to five words in the title ordered by points.
 
 # How to launch it
