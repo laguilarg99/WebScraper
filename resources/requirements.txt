@@ -1,5 +1,4 @@
 flask
 selenium
 pandas
-numpy
 more-itertools

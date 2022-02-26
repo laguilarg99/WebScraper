@@ -16,11 +16,11 @@ def home():
 
 @flask_app.route('/first_filter')
 def firstFilter():
-    return web_scraper.scrape_site(constants.URL) + main_page
+    return web_scraper.first_filter(constants.URL) + main_page
 
 @flask_app.route('/second_filter')
 def secondFilter():
-    return 'Hello world 3'
+    return web_scraper.second_filter(constants.URL) + main_page
 
 if __name__ == '__main__':
     flask_app.run(debug=False)
