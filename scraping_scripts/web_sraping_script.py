@@ -4,9 +4,10 @@ sys.path.append('/app')
 import time
 import numpy as np
 import itertools
+import scraping_scripts.models.entry as entry
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import scraping_scripts.models.entry as entry
+
 
 
 def scrape_site(URL):
@@ -30,14 +31,15 @@ def scrape_site(URL):
     del comments[0]
 
     final_web = ""
-
+    entry_array = []
 
     for (title, rank, comment, score) in itertools.zip_longest(titles, ranks, scores, comments):
         if title is not None and rank is not None and comment is not None and score is not None: 
-            final_web += rank.text + " | " + title.text + " | " + score.text + " | " + comment.text + "<br>"
+            entry_element = entry.entry(title.text, rank.text, comment.text, score.text)
+            entry_array.append(entry_element)
 
     driver.close()
 
-    return final_web
+    return final_web + entry_array[0].print_entry()
 
 

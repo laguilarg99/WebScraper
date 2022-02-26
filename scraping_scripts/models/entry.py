@@ -1,13 +1,13 @@
 
 class entry:
-    def __init_(self, title, number_of_order, number_of_comments, points):
+    def __init__(self, title, rank, comments, score):
         self.title = title
-        self.number_of_order = number_of_order
-        self.number_of_comments = number_of_comments
-        self.points = points
+        self.rank = rank
+        self.comments = comments
+        self.score = score
 
     def print_entry(self):
-        print(self.number_of_order + " | " + self.title + 
-                " | " + self.number_of_comments + " | " + self.points)
-        
+        return self.rank + " | " + self.title + \
+            " | " + self.comments + " | " + self.score
+
 
