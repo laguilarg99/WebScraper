@@ -41,27 +41,6 @@ def scrape_site(URL):
 
     return entry_array
 
-# Filter the list by number of words
-# list_entries -> list with all the entries retrieved from the website
-# more_than -> flag to know if you want the title to have more or less the the 
-#              number of words specified
-# number_of_words -> number of words to filter
-def filter_by_words(list_entries, more_than, number_of_words):
-
-    if more_than:
-        for entry in list_entries:
-            count_words = len(entry.title.split())
-            if count_words <= number_of_words:
-                list_entries.remove(entry)
-    else:
-        for entry in list_entries:
-            count_words = len(entry.title.split())
-            if count_words > number_of_words:
-                list_entries.remove(entry)
-
-    return list_entries
-
-
 def order_by_comments(list_entries):
     hashmap_comments = {}
     for entry in list_entries:
@@ -88,14 +67,14 @@ def print_web(list_entries):
 
 def first_filter(URL):
     list_entries = scrape_site(URL)
-    filter_entries = filter_by_words(list_entries, True, 5)
+    filter_entries = filter(lambda c: len(c.title.split()) > 5, list_entries)
     sorted_entries = order_by_comments(filter_entries)
     return print_web(sorted_entries)
 
     
 def second_filter(URL):
     list_entries = scrape_site(URL)
-    filter_entries = filter_by_words(list_entries, False, 5)
+    filter_entries = filter(lambda c: len(c.title.split()) <= 5, list_entries)
     sorted_entries = order_by_points(filter_entries)
     return print_web(sorted_entries)
 
