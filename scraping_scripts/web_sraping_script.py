@@ -48,19 +48,20 @@ def scrape_site(URL):
 # number_of_words -> number of words to filter
 def filter_by_words(list_entries, more_than, number_of_words):
 
+    result_list = list_entries
+
     if more_than:
         for entry in list_entries:
             count_words = len(entry.title.split())
             if count_words <= number_of_words:
-                list_entries.remove(entry)
-
+                result_list.remove(entry)
     else:
         for entry in list_entries:
             count_words = len(entry.title.split())
             if count_words > number_of_words:
-                list_entries.remove(entry)
+                result_list.remove(entry)
 
-    return list_entries
+    return result_list
 
 
 def order_by_comments(list_entries):
@@ -91,12 +92,12 @@ def first_filter(URL):
     list_entries = scrape_site(URL)
     filter_entries = filter_by_words(list_entries, True, 5)
     sorted_entries = order_by_comments(filter_entries)
-    return print_web(sorted_entries)
+    return print_web(filter_entries)
 
     
 def second_filter(URL):
     list_entries = scrape_site(URL)
     filter_entries = filter_by_words(list_entries, False, 5)
     sorted_entries = order_by_points(filter_entries)
-    return print_web(sorted_entries)
+    return print_web(filter_entries)
 
