@@ -29,7 +29,6 @@ def scrape_site(URL):
     # delete first comments link appearance
     del comments[0]
 
-    final_web = ""
     entry_array = []
 
     for (title, rank, comment, score) in itertools.zip_longest(titles, ranks, comments, scores):
