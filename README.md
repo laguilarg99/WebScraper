@@ -19,4 +19,4 @@ You must have docker installed in your machine. Then, execute the following comm
     docker run  --shm-size="2g" -d -p 5000:5000 flask_app
 ```
 
-Finally, go a web browser and look for the following url, localhost:5000
+Finally, go to a web browser and look for the following url, localhost:5000
