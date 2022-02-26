@@ -1,7 +1,5 @@
 # Web Scraper
 
-# Introduction
-
 Using this project, you’ll be able to extract the first 30 entries from https://news.ycombinator.com/.
 
 And select one of the following operations over that data:
